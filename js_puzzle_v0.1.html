@@ -3,6 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Puzzle</title>
+  <style type="text/css">
+    input[readonly]
+    {
+        background-color:#e8e8e8;
+    }
+  </style>
 </head>
 <body>
     <h1>Puzzle</h1>
@@ -27,23 +33,30 @@ For which: a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup>
 For example, 3<sup>2</sup> + 4<sup>2</sup> = 9 + 16 = 25 = 5<sup>2</sup>.<br>
 There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 Find the product abc.</p>
+  <p><input type="button" onclick="pythagorianTri()" style="font-weight: bold;" value="solution"> Values of a, b, c are: <input type="text" id="pythagorianVars" name="pyth" readonly> the product of a, b, c is: <input type="text" id="pythagorianVarsProd" name="pyth" readonly></p>
+  <hr>
+  <p>3) For positive n, factorial is n! = n*(n−1)!   (e.g. 5! = 5 * 4 * 3 * 2 * 1) Create a recursive algorithm to calculate the factorial using every second number as shown in examples below:<br>
+5! = 5 * 3 * 1 = 15</p>
+   <p><input type="button" onclick="factorials()" style="font-weight: bold;" value="solution"> Input factorial to calculate: <input type="text" id="factorialsInput" name="factorialsInput"> the solution is: <input type="text" id="factorialsSolution" name="factorialsSolution" readonly></p>
     <script type="text/javascript">
         /*---------------- Array rotation ---------------------*/
         function rotateArrayInput () {
-          // get input 
+          // get inputs
           var arrayInputVal = document.getElementById('arrayData').value;
           var arrayStepsVal = document.getElementById('arraySteps').value;
           var arrayResult;
-          // check validity of the string
+          // check validity of the strings
           if ((/^(\d+(,\d+)*)?$/.test(arrayInputVal)) && (/^\d+$/.test(arrayStepsVal))) {
+            //make input array
             var tempArray = arrayInputVal.split(',');
             arrayResult = rotateArray(tempArray, arrayStepsVal);
           } else {
-            arrayResult = "Invalid array or/and steps input";
+            arrayResult = 'Invalid array or/and steps input';
           }
           document.getElementById('arrayAnswer').value = arrayResult;
         }
 
+        // funstion to perform array roatation
         function rotateArray (arrayInput, steps) {
           var tempArray = [];
           while( steps-- ) {
@@ -52,6 +65,27 @@ Find the product abc.</p>
           }
           return  arrayInput;
         }
+
+        /*---------------------Pythagorian triange-----------------------------------*/
+        function pythagorianTriCalc() {
+          var sumVal = 1000;
+          var a,b,c;
+          for (a = 1; a <= sumVal/3; a++) {
+            for (b = a + 1; b <=sumVal/2; b++) {
+              c = sumVal - a - b;
+              if ( (a*a) + (b*b) == (c*c))
+                return [a,b,c];
+            }
+          }
+        }
+        
+        function pythagorianTri () {
+          var pythArray = pythagorianTriCalc();
+          document.getElementById('pythagorianVars').value = pythArray[0]+','+pythArray[1]+','+pythArray[2];
+          document.getElementById('pythagorianVarsProd').value = pythArray[0]*pythArray[1]*pythArray[2];
+        }
+
+        /*---------------------Recursive factorials-----------------------------------*/ 
 
     </script>
 </body>
