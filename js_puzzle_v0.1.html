@@ -5,6 +5,12 @@
   <title>Puzzle</title>
   <meta name="author" content="Vyacheslav Zlobin">
   <style type="text/css">
+   .italic {
+    font-style: italic;
+   }
+   .bold {
+    font-weight: bold;
+   }
     input[readonly]
     {
         background-color:#e8e8e8;
@@ -19,7 +25,12 @@
   </style>
 </head>
 <body>
-    <h1>Puzzle</h1>
+    <h1>Programming Puzzle</h1>
+    <p class="italic">Programmatic solution written in Vanilla JavaScript at the request of <span class="bold">Laura Lewis</span> from <span class="bold">Kx Labs</span>.</p>
+    <p class="italic">Hope you find this solution presentation acceptable.</p>
+    <p class="italic">Best regards,</p>
+    <p class="italic"> &emsp;Vyacheslav Zlobin</p>
+    <hr>
     <p>1) Rotate an array of n elements to the right by k steps.
 For example, with n = 7 and k = 3, the array [1,2,3,4,5,6,7] is rotated to [5,6,7,1,2,3,4].
   </p>
@@ -61,6 +72,7 @@ For example, with n = 7 and k = 3, the array [1,2,3,4,5,6,7] is rotated to [5,6,
         <input type="text" id="factorialsInput" name="factorialsInput"><br><br> 
         <input type="button" onclick="factorials()" value="solution"><br><br> 
         The solution is: <input type="text" id="factorialsSolution" name="factorialsSolution" readonly>
+        <span id="factorialNumbers"></span>
         </fieldset>
   </form>
     <script type="text/javascript">
@@ -111,6 +123,7 @@ For example, with n = 7 and k = 3, the array [1,2,3,4,5,6,7] is rotated to [5,6,
 
         /*---------------------Recursive factorials-----------------------------------*/ 
         function factorials() {
+          document.getElementById('factorialNumbers').innerHTML = '';
           var factorialVal =  document.getElementById('factorialsInput').value;
           var factorialResult = 'Invalid factorial input allowed only integers';
           if (/^\d+$/.test(factorialVal)){
@@ -121,10 +134,10 @@ For example, with n = 7 and k = 3, the array [1,2,3,4,5,6,7] is rotated to [5,6,
 
         // calcualte factorial with every second number
         function factorialCalc(n) {
-          console.log(n);
           if(n <= 0) {
               return 1
           } else {
+              document.getElementById('factorialNumbers').innerHTML += '<br>Factorial Number: '+n;
               return n * factorialCalc(n - 2);
           }
         }
